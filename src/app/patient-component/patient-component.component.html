@@ -1,0 +1,33 @@
+<p>patient-component app</p>
+<br><br>
+<div class="row">
+<div class="col"><button (click)="reset()" type="button" class="btn btn-primary">Reset Data</button></div>
+</div>
+<br><br>
+<div class="row" style="font-weight: bolder;">
+    <div class="col-3">
+        <input type="text" [(ngModel)]="txtId"><button (click)="filterData(FilterType.Id, txtId)" type="button" class="btn btn-primary">Filter By Id</button>
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="txtName"><button (click)="filterData(FilterType.Name,  txtName)" type="button" class="btn btn-primary">Filter By Name</button>
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="txtDOB"><button (click)="filterData(FilterType.DOB, txtDOB)" type="button" class="btn btn-primary">Filter By DOB</button>
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="txtEmail"><button (click)="filterData(FilterType.Email, txtEmail)" type="button" class="btn btn-primary">Filter By Email</button>
+    </div>
+</div>
+<br><br>
+<div class="row" style="font-weight: bolder;">
+    <div class="col-3">FirstName</div>
+    <div class="col-3">LastName</div>
+    <div class="col-3">Date Of Birth</div>
+    <div class="col-3">Email</div>
+</div>
+<div class="row" *ngFor="let patient of patientList" >
+    <div class="col-3">{{patient.Id}}</div>
+    <div class="col-3">{{patient.FirstName + " " + patient.LastName}}</div>
+    <div class="col-3">{{patient.DOB}}</div>
+    <div class="col-3">{{patient.Email}}</div>
+</div>
