@@ -39,23 +39,23 @@ export class PatientComponent implements OnInit {
   }
 
   filterData(filterType : FilterType, value : string) {
+    value = value.toLowerCase();
     //this.patientList = this.patientService.patientList;
     switch (filterType) {
       case FilterType.Id:
-        this.patientList = this.patientList.filter(p => p.Id.toString().includes(value))
+        this.patientList = this.patientList.filter(p => p.Id.toString().toLowerCase().includes(value))
         break;
       case FilterType.Name:
         this.patientList = this.patientList.filter(p => {
-          let fullName = p.FirstName + p.LastName;
+          let fullName = p.FirstName.toLowerCase() + ' ' + p.LastName.toUpperCase();
           return fullName.includes(value);
-       })
-        
+       });
         break;
       case FilterType.DOB:
         this.patientList = this.patientList.filter(p => p.DOB.includes(value));
         break;
       case FilterType.Email:
-        this.patientList = this.patientList.filter(p => p.Email.includes(value));
+        this.patientList = this.patientList.filter(p => p.Email.toLowerCase().includes(value));
         break;
       default:
         this.patientList = this.patientService.patientList;

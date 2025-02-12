@@ -19,8 +19,8 @@ export class PatientService {
         Id: ct,
         FirstName: 'FirstName-' + Math.floor(Math.random() * 10000),
         LastName: 'LastName-' + Math.floor(Math.random() * 10000),
-        DOB: '1/1/' + (Math.floor(Math.random() * (2000 - 1950 + 1)) + 1950).toString(),
-        Email: ct + "@gmail.com",
+        DOB: '01/01/' + (Math.floor(Math.random() * (2000 - 1950 + 1)) + 1950).toString(),
+        Email: Math.floor(Math.random() * 10000) + "@gmail.com",
         Address: this.getAddress(ct)
       }
 
@@ -32,7 +32,7 @@ export class PatientService {
   getAddress(id : number) : Address {
     let address : Address = {
       Address1: "Address1-" + id,
-      Address2: '',
+      Address2: 'Address2-' + id,
       City: "City-" + id,
       State: "State-" + id,
       Zip: 'Zip-' + id
