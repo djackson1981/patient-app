@@ -1,11 +1,6 @@
 <p>patient-component app</p>
-<br><br>
-<div class="row">
-<div class="col"><button (click)="reset()" type="button" class="btn btn-primary">Reset Data</button></div>
-</div>
-<br><br>
 <div>
-<input type="text" [(ngModel)]="splitYear" ><button (click)="splitPatientList(splitYear)" type="button" class="btn btn-primary">Change Split List</button>
+<input type="text" [(ngModel)]="splitYear" ><button (click)="splitPatientList()" type="button" class="btn btn-primary">Change Split List</button>
 <mat-radio-group (change)="changePatientList()"  [(ngModel)]="selectedListSort">
     <mat-radio-button value="0">Regular List</mat-radio-button>
     <mat-radio-button value="1">Older Years List</mat-radio-button>
@@ -16,18 +11,20 @@
 <br><br>
 <div class="row" style="font-weight: bolder;">
     <div class="col-3">
-        <input type="text" [(ngModel)]="txtId"><button (click)="splitPatientList(FilterType.Id)" type="button" class="btn btn-primary">Filter By Id</button>
+        <label for="pId">Filter By Id: </label> <input type="text" id="pId" [(ngModel)]="txtId">
     </div>
     <div class="col-3">
-        <input type="text" [(ngModel)]="txtName"><button (click)="filterData(FilterType.Name,  txtName)" type="button" class="btn btn-primary">Filter By Name</button>
+        <label for="pName">Filter By Name: </label> <input type="text" id="pName" [(ngModel)]="txtName">
     </div>
     <div class="col-3">
-        <input type="text" [(ngModel)]="txtDOB"><button (click)="filterData(FilterType.DOB, txtDOB)" type="button" class="btn btn-primary">Filter By DOB</button>
+        <label for="pDOB">Filter By DOB: </label><input type="text" id="pDOB" [(ngModel)]="txtDOB">
     </div>
     <div class="col-3">
-        <input type="text" [(ngModel)]="txtEmail"><button (click)="filterData(FilterType.Email, txtEmail)" type="button" class="btn btn-primary">Filter By Email</button>
+        <label for="pEmail">Filter By Email: </label><input type="text" id="pEmail" [(ngModel)]="txtEmail">
     </div>
 </div>
+<br>
+<button (click)="filterData()" type="button" class="btn btn-primary">Apply Filters</button><span>&nbsp;&nbsp;&nbsp;</span><button (click)="reset()" type="button" class="btn btn-primary">Reset Data</button>
 <br><br>
 <div class="row" style="font-weight: bolder;">
     <div class="col-3">ID</div>

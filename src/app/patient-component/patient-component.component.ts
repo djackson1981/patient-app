@@ -40,20 +40,26 @@ export class PatientComponent implements OnInit {
     this.txtName = '';
     this.txtDOB = '';
     this.txtEmail = ''
+    this.splitYear = ''
     this.patientList = [...this.patientService.patientList];
+    this.olderYearsList = [];
+    this.newerYearsList = [];
   }
 
   changePatientList() { 
-    if(this.selectedListSort == "0")
+    
+    if(this.selectedListSort == "0") 
       this.patientList = this.patientService.patientList;
     if(this.selectedListSort == "1")
-      this.patientList = this.olderYearsList;
+      this.patientList = [...this.olderYearsList];
     if(this.selectedListSort == "2")
-      this.patientList = this.newerYearsList;
+      this.patientList = [...this.newerYearsList];
+
+    this.filterData();
   }
 
-  splitPatientList(year : any) {
-    year = Number(year);
+  splitPatientList() {
+    let year = Number(this.splitYear);
     let copyOfPatientList = [...this.patientService.patientList];
     let yearOnlyList = [...copyOfPatientList.map(p => new Date(p.DOB).getFullYear())];
    
@@ -68,29 +74,23 @@ export class PatientComponent implements OnInit {
     this.newerYearsList = [...copyOfPatientList];
   
     this.changePatientList();
+    alert('Split List Applied.')
   }
 
-  filterData(filterType : FilterType, value : string) {
-    value = value.toLowerCase();
-    //this.patientList = this.patientService.patientList;
-    switch (filterType) {
-      case FilterType.Id:
-        this.patientList = this.patientList.filter(p => p.Id.toString().toLowerCase().includes(value))
-        break;
-      case FilterType.Name:
-        this.patientList = this.patientList.filter(p => {
+  filterData() {
+    if(this.txtId != '')
+      this.patientList = this.patientList.filter(p => p.Id.toString().toLowerCase().includes(this.txtId.toLowerCase()))
+    
+    if(this.txtName != '')
+      this.patientList = this.patientList.filter(p => {
           let fullName = p.FirstName.toLowerCase() + ' ' + p.LastName.toUpperCase();
-          return fullName.includes(value);
-       });
-        break;
-      case FilterType.DOB:
-        this.patientList = this.patientList.filter(p => p.DOB.includes(value));
-        break;
-      case FilterType.Email:
-        this.patientList = this.patientList.filter(p => p.Email.toLowerCase().includes(value));
-        break;
-      default:
-        this.patientList = this.patientService.patientList;
-    }
+              return fullName.includes(this.txtName.toLowerCase());
+        });
+    
+    if(this.txtDOB != '')
+      this.patientList = this.patientList.filter(p => p.DOB.includes(this.txtDOB.toLowerCase()));
+
+    if(this.txtEmail != '')
+      this.patientList = this.patientList.filter(p => p.Email.toLowerCase().includes(this.txtEmail.toLowerCase()));
   }
 }
