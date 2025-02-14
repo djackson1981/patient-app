@@ -23,9 +23,9 @@ export class PatientService {
         Email: Math.floor(Math.random() * 10000) + "@gmail.com",
         Address: this.getAddress(ct)
       }
-
       this.patientList.push(newPatient);
     }
+    this.patientList.sort((a, b) => new Date(a.DOB).getFullYear() - new Date(b.DOB).getFullYear())
   }
 
 

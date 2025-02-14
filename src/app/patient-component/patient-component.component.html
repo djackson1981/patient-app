@@ -4,9 +4,19 @@
 <div class="col"><button (click)="reset()" type="button" class="btn btn-primary">Reset Data</button></div>
 </div>
 <br><br>
+<div>
+<input type="text" [(ngModel)]="splitYear" ><button (click)="splitPatientList(splitYear)" type="button" class="btn btn-primary">Change Split List</button>
+<mat-radio-group (change)="changePatientList()"  [(ngModel)]="selectedListSort">
+    <mat-radio-button value="0">Regular List</mat-radio-button>
+    <mat-radio-button value="1">Older Years List</mat-radio-button>
+    <mat-radio-button value="2">Newer Years List</mat-radio-button>
+</mat-radio-group>
+</div>
+
+<br><br>
 <div class="row" style="font-weight: bolder;">
     <div class="col-3">
-        <input type="text" [(ngModel)]="txtId"><button (click)="filterData(FilterType.Id, txtId)" type="button" class="btn btn-primary">Filter By Id</button>
+        <input type="text" [(ngModel)]="txtId"><button (click)="splitPatientList(FilterType.Id)" type="button" class="btn btn-primary">Filter By Id</button>
     </div>
     <div class="col-3">
         <input type="text" [(ngModel)]="txtName"><button (click)="filterData(FilterType.Name,  txtName)" type="button" class="btn btn-primary">Filter By Name</button>
@@ -20,8 +30,8 @@
 </div>
 <br><br>
 <div class="row" style="font-weight: bolder;">
-    <div class="col-3">FirstName</div>
-    <div class="col-3">LastName</div>
+    <div class="col-3">ID</div>
+    <div class="col-3">Full Name</div>
     <div class="col-3">Date Of Birth</div>
     <div class="col-3">Email</div>
 </div>
