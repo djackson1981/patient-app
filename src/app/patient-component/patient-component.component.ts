@@ -45,11 +45,11 @@ export class PatientComponent implements OnInit {
 
   changePatientList() { 
     if(this.selectedListSort == "0")
-      this.patientList = this.patientService.patientList
+      this.patientList = this.patientService.patientList;
     if(this.selectedListSort == "1")
-      this.patientList = this.olderYearsList
+      this.patientList = this.olderYearsList;
     if(this.selectedListSort == "2")
-      this.patientList = this.newerYearsList
+      this.patientList = this.newerYearsList;
   }
 
   splitPatientList(year : any) {
@@ -64,12 +64,9 @@ export class PatientComponent implements OnInit {
     copyOfPatientList.sort((a, b) => new Date(a.DOB).getFullYear() - new Date(b.DOB).getFullYear());
     let splitIndex = yearOnlyList.indexOf(closestYear);
     
-    this.olderYearsList = [...copyOfPatientList.splice(0,splitIndex)];
-    this.olderYearsList.forEach(p => console.log(p.DOB))
-   
+    this.olderYearsList = [...copyOfPatientList.splice(0,splitIndex)]; 
     this.newerYearsList = [...copyOfPatientList];
-    this.newerYearsList.forEach(p => console.log(p.DOB))
-
+  
     this.changePatientList();
   }
 
